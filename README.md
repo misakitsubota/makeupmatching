@@ -1,24 +1,51 @@
 # README
+# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column                | Type    | Options     |
+| --------------------- | ------- | ----------- |
+| nickname              | string  | null: false |
+| email                 | string  | null: false |
+| encrypted_password    | string  | null: false |
 
-* Ruby version
+### Association
+- has_many :items
+- has_many :comments
 
-* System dependencies
 
-* Configuration
+## items table
 
-* Database creation
+| Column                | Type    | Options     |
+| --------------------- | ------- | ----------- |
+| image                 | text    | null: false |
+| item_name             | string  | null: false |
+| cost                  | integer | null: false |
+| user_id               | integer | null: false, foreign_key: true |
+| brand_id              | integer | null: false, foreign_key: true |
+| category_id           | integer | null: false, foreign_key: true |
 
-* Database initialization
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- has_many :comments
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## comments table
 
-* ...
+| Column               | Type    | Options     |
+| ---------------      | ------- | ----------- |
+| image                | text    | null: false |
+| recommend_item_name  | string  | null: false |
+| cost                 | integer | null: false |
+| description          | text    | null: false |
+| user_id              | integer | null: false, foreign_key: true |
+| item_id              | integer | null: false, foreign_key: true |
+| brand_id             | integer | null: false, foreign_key: true |
+| category_id          | integer | null: false, foreign_key: true |
+
+
+### Association
+- belongs_to :user
+- belongs_to :item
+
