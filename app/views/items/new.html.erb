@@ -1,9 +1,12 @@
 <div class="items-sell-contents">
+  <header class="items-sell-header">
+  </header>
+
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-  <%= form_with model: @item, url: items_path, local: true do |i| %>
+    <%= form_with model: @item, url: items_path, local: true do |i| %>
 
-    <%# <%= render 'shared/error_messages', model: f.object %> %>
+    <%# <%= render 'shared/error_messages', model: f.object %> 
 
     <%# アイテム画像 %>
     <div class="img-upload">
@@ -17,7 +20,7 @@
         </p>
         <%= i.file_field :image, id:"item-image" %>
       </div>
-      <%# <%= image_tag @item.image.variant(resize: '500x500'), class: 'item-image' if @item.image.attached? %> %>
+      <%= image_tag @item.image.variant(resize: '500x500'), class: 'item-image' if @item.image.attached? %>
     </div>
     <%# /出品画像 %>
 
@@ -29,12 +32,12 @@
           下地 or ファンデーション
           <span class="indispensable">必須</span>
         </div>
-   　　　<%= i.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %> %>
+        <%= i.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"category"}) %> 
         <div class="weight-bold-text">
           ブランド名
           <span class="indispensable">必須</span>
         </div>
-        <%= i.collection_select(:brand_id, Brand.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
+        <%# <%= i.collection_select(:brand_id, Brand.all, :id, :name, {}, {class:"select-box", id:"brand"}) %> %>
       </div>
     </div>
     <%# /商品の詳細 %>
