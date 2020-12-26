@@ -1,10 +1,125 @@
-<div class="contents row">
-  <% @items.each do |item| %>
-    <div class="content_post" style="background-image: url(<%= item.image %>);">
-      <p><%= item.item_name %></p>
-      <span class="name">
-        <%= item.cost %>
-      </span>
+<%# <%= render "shared/header" %> %>
+<div class='main'>
+
+  <%# 画面上部の「make up matching」帯部分 %>
+  <div class='title-contents'>
+    <h2 class='service-title'>
+      Make Up Matching
+    </h2>
+    <p class='service-explain'>
+      ベースアップ化粧品の力を
+    </p>
+    <p class='service-explain'>
+      最大限に引き出す
+    </p>
+    <div class='store-btn'>
+      <%= link_to image_tag("", class:"apple-btn"), "#" %>
     </div>
-  <% end %>
+  </div>
+  <%# /画面上部の「make up matching」帯部分  %>
+
+  <%# FURIMAが選ばれる3つの理由部分 %>
+  <div class='select-reason-contents'>
+    <h2 class='title'>
+      FURIMAが選ばれる3つの理由
+    </h2>
+    <ul class='reason-lists'>
+      <li class='list'>
+        <%# <%= image_tag "furima-intro01.png", class:"list-pict" %> %>
+        <span class='reason-list-number'>1</span>
+        <h3 class='reason-list-text'>
+          <span class='reason-list-blue-text'>3分</span>
+          ですぐに出品
+        </h3>
+        <p class='reason-list-description'>
+          スマホで入力するだけで簡単に出品できる！
+        </p>
+      </li>
+      <li class='list'>
+        <%# <%= image_tag "furima-intro02.png", class:"list-pict" %> %>
+        <span class='reason-list-number'>2</span>
+        <h3 class='reason-list-text'>
+          <span class='reason-list-blue-text'>シンプル</span>
+          で使いやすい
+        </h3>
+        <p class='reason-list-description'>
+          めんどくさい入力は必要なく、検索も購入もスムーズ！
+        </p>
+      </li>
+      <li class='list'>
+        <%# <%= image_tag "furima-intro03.png", class:"list-pict" %> %>
+        <span class='reason-list-number'>3</span>
+        <h3 class='reason-list-text'>
+          手数料
+          <span class='reason-list-blue-text'>業界最安</span>
+        </h3>
+        <p class='reason-list-description'>
+          10%でお得に出品&購入！
+        </p>
+      </li>
+    </ul>
+  </div>
+  <%# /FURIMAが選ばれる3つの理由部分 %>
+
+<%# アイテム一覧 %>
+  <div class='item-contents'>
+    <h2 class='title'>ピックアップカテゴリー</h2>
+    <%= link_to '新規投稿アイテム', new_item_path, class: "subtitle" %>
+    <ul class='item-lists'>
+      <% @items.each do |item| %>
+      <li class='list'>
+        <div class='item-img-content'>       
+            <%= link_to image_tag(item.image, class: "item-img"), item_path(item.id) %> 
+            <%= link_to item_path(item.id) do %>
+            <h3 class='item-name'>
+              <%= item.item_name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= item.cost %>円<br></span>
+              <div class='star-btn'>
+                <%# <%= image_tag "star.png", class:"star-icon" %> %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+            <% end %>
+        </div>
+      </li>
+      <% end %>
+      <%# 商品がない場合のダミー %>
+      <% if @items.length == 0 %>
+        <li class='list'>
+          <%= link_to '#' do %>
+          <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              商品を登録してね！
+            </h3>
+            <div class='item-price'>
+              <span>99999999円<br>(税込み)</span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </li>
+      <% end %>
+      <%# /商品がない場合のダミー %>
+    </ul>
+  </div>
+  <%# /商品一覧 %>
 </div>
+<%= link_to(new_item_path, class: 'purchase-btn') do %>
+  <span class='purchase-btn-text'>登録する</span>
+  <%# <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %> %>
+<% end %>
+<%# <%= render "shared/footer" %> %>
+
+
+
+
+
+
+
+
