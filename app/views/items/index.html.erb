@@ -21,7 +21,7 @@
   <%# FURIMAが選ばれる3つの理由部分 %>
   <div class='select-reason-contents'>
     <h2 class='title'>
-      FURIMAが選ばれる3つの理由
+      商品別に探す
     </h2>
     <ul class='reason-lists'>
       <li class='list'>
@@ -69,7 +69,7 @@
       <% @items.each do |item| %>
       <li class='list'>
         <div class='item-img-content'>       
-            <%= link_to image_tag(item.image, class: "item-img"), item_path(item.id) %> 
+            <%# <%= link_to image_tag(item.image, class: "item-img"), item_path(items.id) do %>  %>
             <%= link_to item_path(item.id) do %>
             <h3 class='item-name'>
               <%= item.item_name %>
@@ -82,6 +82,7 @@
               </div>
             </div>
             <% end %>
+            <%# <% end %> %>
         </div>
       </li>
       <% end %>
