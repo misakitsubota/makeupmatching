@@ -59,21 +59,21 @@
     <ul class='item-lists'>
       <% @items.each do |item| %>
       <li class='list'>
-        <div class='item-img-content'>       
-            <%# <%= link_to image_tag(item.image, class: "item-img"), item_path(items.id) do %>  %>
+        <div class='item-img-content'> 
+          <% if item.image.attached? %>  
+            <%= image_tag item.image, class: "item-img" %> 
             <%= link_to item_path(item.id) do %>
             <h3 class='item-name'>
               <%= item.item_name %>
             </h3>
             <div class='item-price'>
               <span><%= item.cost %>円<br></span>
-              <div class='star-btn'>
-                <%# <%= image_tag "star.png", class:"star-icon" %> %>
+              <%# <div class='star-btn'>
                 <span class='star-count'>0</span>
-              </div>
+              </div> %>
             </div>
             <% end %>
-            <%# <% end %> %>
+          <% end %>
         </div>
       </li>
       <% end %>
