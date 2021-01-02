@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
+  before_action :search_item, only: [:index, :search]
 
   def index
     @items = Item.order("created_at DESC")
@@ -22,10 +23,18 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def search
+    @results = @p.result
+  end
+
   private
 
   def item_params
     params.require(:item).permit(:image, :item_name, :cost, :brand_id, :category_id).merge(user_id: current_user.id)
+  end
+
+  def search_item
+    @p = Item.ransack(params[:q])
   end
 
 end
