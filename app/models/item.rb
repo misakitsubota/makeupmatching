@@ -1,8 +1,9 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :user
+  has_many :comments
   belongs_to :brand
   belongs_to :category
-  belongs_to :item_search
   has_one_attached :image
 
   #空の投稿を保存できないようにする
