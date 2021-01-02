@@ -6,6 +6,7 @@ class CreateComments < ActiveRecord::Migration[6.0]
       t.integer :cost, null: false
       t.text :description, null:false
       t.integer :user_id, null: false
+      t.integer :item_id, null: false
       t.integer :brand_id, null: false
       t.integer :category_id, null: false
       t.timestamps
