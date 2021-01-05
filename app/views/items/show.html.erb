@@ -56,28 +56,110 @@
   </div>
   <%# /商品の概要 %>
 
+  
+
+
+   <div class="comments">
+      <h4>＜コメント一覧＞</h4>
+      <% @comments.each do |comment| %>
+        <p>
+          <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+          <%= comment.description %>
+        </p>
+      <% end %>
+   </div>
+
+
   <div class="comment-box">
     <form>
-      <textarea class="comment-text"></textarea>
-      <%# <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p> %>
+      <%# <textarea class="comment-text"></textarea> %>
       <button type="submit" class="comment-btn">
-        <%# <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%> 
+        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"  %>
         <span>コメントする<span>
       </button>
+      <%# <%= link_to 'アイテム新規登録', new_item_path, class: "subtitle" %> %>
+        <div class="img-upload">
+          <% if user_signed_in? %>
+            <%= form_with(model: [@item, @comment], local: true) do |form| %>
+            <%# 画像登録の場所 %>
+            <div class="weight-bold-text">
+              アイテム画像
+              <span class="indispensable">任意</span>
+            </div>
+            <div class="click-upload">
+              <p>
+                クリックしてファイルをアップロード
+              </p>
+              <%= form.file_field :image, id:"item-image" %>
+            </div>
+            <%# // 画像登録の場所 %>
+            <%# 商品の詳細 %>
+            <div class="items-detail">
+              <div class="weight-bold-text">商品の詳細</div>
+              <div class="form">
+                <div class="weight-bold-text">
+                  下地 or ファンデーション
+                  <span class="indispensable">必須</span>
+                </div>
+                <%= form.collection_select(:category_id, Category.all, :id, :name, {}, {class:"item-brand", id:"category"}) %> 
+                <div class="weight-bold-text">
+                  ブランド名
+                  <span class="indispensable">必須</span>
+                </div>
+                <%= form.collection_select(:brand_id, Brand.all, :id, :name, {}, {class:"item-category", id:"brand"}) %>
+              </div>
+            </div>
+            <%# /商品の詳細 %>
+
+            <%# 商品名 %>
+            <div class="new-items">
+              <div class="weight-bold-text">
+                商品名
+                <span class="indispensable">必須</span>
+              </div>
+              <%= form.text_field :recommend_item_name, class:"item-name", id:"item-name", placeholder:"アイテム名" %>
+              <%= form.text_field :cost, class:"price-input", id:"product-price", placeholder:"例）300" %>
+            </div>
+            <%# /商品名 %>
+
+            <%# 商品説明 %>
+            <h1>商品説明</h1>
+            <%= form.text_area :description, placeholder: "コメントする", rows: "2" %>
+
+
+
+              <%# <%= form.text_area :text, placeholder: "コメントする", rows: "2" %> %>
+            <%= form.submit "登録する" ,class:"sell-btn" %>
+            <%=link_to 'もどる', root_path, class:"back-btn" %>
+            <% end %>
+          <% else %>
+            <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+          <% end %>
+        </div>
+
+      <%# アイテム画像 %>
+          <%# <%= image_tag @item.image.variant(resize: '500x500'), class: 'item-image' if @item.image.attached? %> %>
+          <%# </div> %>
+          <%# /出品画像 %>
+
+
+
+          <%# 下部ボタン %>
+          <%# <div class="sell-btn-contents">
+          </div> %>
+          <%# /下部ボタン %>
     </form>
   </div>
-  <div class="links">
+  <%# <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
     </a>
     <a href="#" class="change-item-btn">
       後ろの商品 ＞
-    </a>
-  </div>
+    </a> %>
+  <%# </div> %>
 </div>
 
 <%# <%= render "shared/footer" %> 
+
+

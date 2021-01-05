@@ -11,8 +11,10 @@ class ItemsController < ApplicationController
   end
 
   def create
+    # binding.pry
     @item = Item.new(item_params)
-    if @item.save
+    if @item.valid? 
+      @item.save
       redirect_to root_path
     else 
       render :new
@@ -20,7 +22,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    # binding.pry
     @item = Item.find(params[:id])
+    # binding.pry
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def search
