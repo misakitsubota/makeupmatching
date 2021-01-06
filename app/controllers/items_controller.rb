@@ -22,9 +22,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # binding.pry
+    @messages = Message.all 
+    @message = Message.new
     @item = Item.find(params[:id])
-    # binding.pry
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
   end
@@ -41,6 +41,10 @@ class ItemsController < ApplicationController
 
   def search_item
     @p = Item.ransack(params[:q])
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 end

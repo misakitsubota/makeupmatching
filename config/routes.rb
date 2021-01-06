@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root to: 'top#index'
   get 'items/search', to: 'items#search'
   resources :items do
-    resources :comments
+    resources :messages, only: [:create]
   end
 end
