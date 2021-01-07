@@ -45,35 +45,22 @@
     </table>
   </div>
 
-
-    <h3>mini_talk_app</h3>
+  
+  <div class="comment-box">
+    
     <%= form_with model: [@item, @message] do |f| %>
-      <%= f.text_field :text %>
-      <%= f.submit '送信' %>
-    <% end %>
+
+    <h4>みんなのオススメを投稿！</h4>
     <div id='messages'>
       <% @messages.reverse_each do |message| %>
-        <p><%= message.text %></p>
+        <p><%= message.text %>    投稿者：<%= @item.user.nickname %></p>
       <% end %>
     </div>
-
-
-
-
-
-
-
-
-   <div class="comments">
-      <h4>＜コメント一覧＞</h4>
-      <% @comments.each do |comment| %>
-        <p>
-          <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
-          <%= comment.description %>
-        </p>
-      <% end %>
-   </div>
-
+    
+      <%= f.text_field :text, class:"comment-text" %>
+      <%= f.submit '送信' %>
+    <% end %>
+  </div>
 
 
 

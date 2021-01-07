@@ -25,8 +25,8 @@ class ItemsController < ApplicationController
     @messages = Message.all 
     @message = Message.new
     @item = Item.find(params[:id])
-    @comment = Comment.new
-    @comments = @item.comments.includes(:user)
+    # @comment = Comment.new
+    # @comments = @item.comments.includes(:user)
   end
 
   def search
