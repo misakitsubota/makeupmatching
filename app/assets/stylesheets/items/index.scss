@@ -64,7 +64,7 @@ a {
   content: '';
   width: 70px;
   height: 4px;
-  background-color: #3ccace;
+  background-color: pink;
   position: absolute;
   bottom: -10px;
   left: 50%;
@@ -85,6 +85,15 @@ a {
   position: relative;
 }
 
+.move-title {
+  font-size: 3vh;
+  margin: 1vh 0;
+  text-decoration: none;
+  color: pink;
+  font-weight: bold;
+}
+
+
 .list-pict {
   margin-bottom: 20px;
   width: 100%;
@@ -99,7 +108,7 @@ a {
   font-size: 30px;
   text-align: center;
   line-height: 60px;
-  background-color: #3ccace;
+  background-color:pink;
   color: #fff;
 }
 
@@ -110,7 +119,7 @@ a {
 }
 
 .reason-list-blue-text {
-  color: #3ccace;
+  color: pink;
 }
 
 .reason-list-description {
@@ -140,7 +149,7 @@ a {
   font-size: 3vh;
   margin: 1vh 0;
   text-decoration: none;
-  color: #3ccace;
+  color: pink;
   font-weight: bold;
 }
 
